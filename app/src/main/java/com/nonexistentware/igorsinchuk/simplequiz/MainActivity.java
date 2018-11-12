@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nonexistentware.igorsinchuk.simplequiz.Common.Common;
 import com.nonexistentware.igorsinchuk.simplequiz.Model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!user.isEmpty()) {
                         User login = dataSnapshot.child(user).getValue(User.class);
                         if (login.getPassword().equals(pass)) {
+                            Common.currentUser = login;
                             startActivity(new Intent(MainActivity.this, HomeActivity.class));
                             finish();
                         }

@@ -1,5 +1,6 @@
 package com.nonexistentware.igorsinchuk.simplequiz.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,9 +15,11 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.nonexistentware.igorsinchuk.simplequiz.Common.Common;
 import com.nonexistentware.igorsinchuk.simplequiz.Interface.ItemClickListener;
 import com.nonexistentware.igorsinchuk.simplequiz.Model.Category;
 import com.nonexistentware.igorsinchuk.simplequiz.R;
+import com.nonexistentware.igorsinchuk.simplequiz.Start;
 import com.nonexistentware.igorsinchuk.simplequiz.ViewHolder.CategoryViewHolder;
 import com.squareup.picasso.Picasso;
 
@@ -78,8 +81,10 @@ public class CategoryFragment extends Fragment {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position).getKey(), model.getName()), Toast.LENGTH_SHORT).show();
-
+//                        Toast.makeText(getActivity(), String.format("%s|%s", adapter.getRef(position).getKey(), model.getName()), Toast.LENGTH_SHORT).show();
+                        Intent startGame = new Intent(getActivity(), Start.class);
+                        Common.categoryId = adapter.getRef(position).getKey();
+                        startActivity(startGame);
                     }
                 });
             }
